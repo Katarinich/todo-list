@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
   margin: 0;
   padding: 0; }
 
@@ -14,10 +15,11 @@ body {
   background: #ffffff;
   padding: 24px;
   height: 50%;
-  overflow-y: auto;
   width: 500px;
   border-radius: 5px;
-  box-shadow: 5px 5px 20px black; }
+  box-shadow: 5px 5px 20px black;
+  display: flex;
+  flex-direction: column; }
 
 .add-form form {
   display: flex;
@@ -28,7 +30,7 @@ body {
     border: none;
     border-bottom: solid grey 2px;
     outline: none; }
-  .add-form form button[type="submit"] {
+  .add-form form button[type='submit'] {
     margin-left: 10px;
     width: 38px;
     border: none;
@@ -36,18 +38,26 @@ body {
     color: white;
     border-radius: 5px; }
 
-.todo-list ol {
-  list-style-type: none;
-  margin: 0;
-  padding: 0; }
-  .todo-list ol li {
-    display: flex; }
-    .todo-list ol li span {
-      flex-grow: 1; }
-    .todo-list ol li .delete-btn {
-      border: none;
-      background: none; }
-    .todo-list ol li.checked span {
-      text-decoration: line-through; }
+.todo-list {
+  flex-grow: 1;
+  overflow-y: auto;
+  margin-bottom: 20px; }
+  .todo-list ol {
+    list-style-type: none;
+    margin: 0;
+    padding: 0; }
+    .todo-list ol li {
+      display: flex; }
+      .todo-list ol li span {
+        flex-grow: 1; }
+      .todo-list ol li .delete-btn {
+        border: none;
+        background: none; }
+      .todo-list ol li.checked span {
+        text-decoration: line-through; }
+
+.delete-checked-wrapper {
+  display: flex;
+  justify-content: flex-end; }
 
 /*# sourceMappingURL=styles.css.map */
