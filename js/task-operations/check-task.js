@@ -1,7 +1,11 @@
 function checkTask(event) {
-  const li = event.target.parentNode;
+  const { target } = event;
+  const { parentNode: li, checked } = target;
 
-  if (event.target.checked) {
+  // const checked = target.checked;
+  // const li = target.parentNode;
+
+  if (checked) {
     li.classList.add('checked');
   } else {
     li.classList.remove('checked');
