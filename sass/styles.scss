@@ -70,11 +70,11 @@ body {
     li {
       display: flex;
 
-      span {
+      span, input[type="text"] {
         flex-grow: 1;
       }
 
-      .delete-btn {
+      .delete-btn, .edit-btn {
         border: none;
         background: none;
       }

@@ -1,3 +1,4 @@
+import editTask from './edit-task.js';
 import checkTask from './check-task.js';
 import deleteTask from './delete-task.js';
 
@@ -32,13 +33,20 @@ export default function addTask(event) {
 
   todoList.appendChild(newTodo);
 
-  newTodo.innerHTML = `<input type="checkbox"> <span>${todoText}</span> <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>`;
+  newTodo.innerHTML = `
+    <input type="checkbox"> 
+    <span>${todoText}</span> 
+    <button class="edit-btn"><i class="fas fa-edit"></i></button> 
+    <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>
+  `;
 
   const checkbox = document.querySelector(`#task-${tasks.length} > input`);
   const deleteBtn = document.querySelector(`#task-${tasks.length} .delete-btn`);
+  const editBtn = document.querySelector(`#task-${tasks.length} .edit-btn`);
 
   checkbox.addEventListener('change', checkTask);
   deleteBtn.addEventListener('click', deleteTask);
+  editBtn.addEventListener('click', editTask);
 
   // очищаем форму
   event.target.reset();
