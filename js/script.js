@@ -1,4 +1,4 @@
-import addTask from './add-task.js';
+import addTask from './task-operations/add-task.js';
 
 // находим форму добавления
 const addForm = document.querySelector('.add-form > form');
