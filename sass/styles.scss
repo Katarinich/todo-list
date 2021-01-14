@@ -1,0 +1,96 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: rgb(5, 0, 93);
+  background: linear-gradient(
+    90deg,
+    rgba(5, 0, 93, 1) 0%,
+    rgba(9, 9, 121, 1) 35%,
+    rgba(0, 212, 255, 1) 100%
+  );
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 100vh;
+}
+
+.container {
+  background: #ffffff;
+  padding: 24px;
+
+  height: 50%;
+
+  width: 500px;
+  border-radius: 5px;
+  box-shadow: 5px 5px 20px black;
+  display: flex;
+  flex-direction: column;
+}
+
+.add-form {
+  form {
+    display: flex;
+    margin-bottom: 20px;
+
+    input {
+      flex-grow: 1;
+      height: 32px;
+      border: none;
+      border-bottom: solid grey 2px;
+      outline: none;
+    }
+
+    button[type='submit'] {
+      margin-left: 10px;
+      width: 38px;
+      border: none;
+      background: #00d4ff;
+      color: white;
+      border-radius: 5px;
+    }
+  }
+}
+
+.todo-list {
+  flex-grow: 1;
+  overflow-y: auto;
+  margin-bottom: 20px;
+
+  ol {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      display: flex;
+
+      span, input[type="text"] {
+        flex-grow: 1;
+      }
+
+      .delete-btn, .edit-btn {
+        border: none;
+        background: none;
+      }
+
+      &.checked {
+        span {
+          text-decoration: line-through;
+        }
+      }
+    }
+  }
+}
+
+.delete-checked {
+  &-wrapper {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
