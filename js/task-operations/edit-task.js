@@ -1,5 +1,9 @@
 import { ENTER_KEY_CODE } from '../constants.js';
 
+import taskList from '../tasks.js';
+import { getTaskId } from '../utils.js';
+import storageService from '../storage-service.js';
+
 function submitTask(event) {
   if (event.keyCode !== ENTER_KEY_CODE) {
     return;
@@ -27,6 +31,12 @@ function saveTask(li, icon, checkbox) {
   icon.classList.add('fa-edit');
 
   checkbox.disabled = false;
+
+  const taskId = getTaskId(li);
+
+  taskList.edit(taskId, newText);
+
+  storageService.set('tasks', JSON.stringify(taskList.tasks));
 }
 
 function editTask(event) {
@@ -51,7 +61,7 @@ function editTask(event) {
     const { textContent: text } = span;
 
     const input = document.createElement('input');
-    
+
     input.setAttribute('type', 'text');
 
     input.addEventListener('keydown', submitTask);
