@@ -1,3 +1,7 @@
+import taskList from '../tasks.js';
+import { getTaskId } from '../utils.js';
+import storageService from '../storage-service.js';
+
 function checkTask(event) {
   const { target } = event;
   const { parentNode: li, checked } = target;
@@ -10,6 +14,11 @@ function checkTask(event) {
   } else {
     li.classList.remove('checked');
   }
+
+  const taskId = getTaskId(li);
+  taskList.check(taskId);
+
+  storageService.set('tasks', JSON.stringify(taskList.tasks));
 }
 
 export default checkTask;

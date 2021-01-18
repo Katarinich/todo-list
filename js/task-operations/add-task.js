@@ -3,12 +3,13 @@ import checkTask from './check-task.js';
 import deleteTask from './delete-task.js';
 
 import taskList from '../tasks.js';
+import storageService from '../storage-service.js';
 
 const todoList = document.querySelector('.todo-list ol');
 
 function generateId(tasks) {
   // получаем массив со всеми идентификаторами тасков
-  const ids = tasks.map(task => {
+  const ids = tasks.map((task) => {
     return task.id;
   });
 
@@ -45,6 +46,11 @@ export function createTask(task) {
   checkbox.addEventListener('change', checkTask);
   deleteBtn.addEventListener('click', deleteTask);
   editBtn.addEventListener('click', editTask);
+
+  if (task.checked) {
+    newTodo.classList.add('checked');
+    checkbox.checked = 'checked';
+  }
 }
 
 export default function addTask(event) {
@@ -74,5 +80,5 @@ export default function addTask(event) {
   // очищаем форму
   event.target.reset();
 
-  localStorage.setItem('tasks', JSON.stringify(taskList.tasks));
+  storageService.set('tasks', JSON.stringify(taskList.tasks));
 }
