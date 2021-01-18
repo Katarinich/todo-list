@@ -3,27 +3,10 @@ import checkTask from './check-task.js';
 import deleteTask from './delete-task.js';
 
 import taskList from '../tasks.js';
+import { generateId } from '../utils.js';
 import storageService from '../storage-service.js';
 
 const todoList = document.querySelector('.todo-list ol');
-
-function generateId(tasks) {
-  // получаем массив со всеми идентификаторами тасков
-  const ids = tasks.map((task) => {
-    return task.id;
-  });
-
-  // если у нас пустой массив, начинаем с единицы
-  if (!ids.length) {
-    return 1;
-  }
-
-  // находим максимальный id
-  const maxId = Math.max(...ids);
-
-  // возвращаем новый который больше максимального на единицу
-  return maxId + 1;
-}
 
 export function createTask(task) {
   const newTodo = document.createElement('li');

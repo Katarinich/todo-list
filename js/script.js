@@ -1,16 +1,29 @@
-import taskList from './tasks.js';
+import { generateId } from './utils.js';
+import listsList from './lists-list.js';
 
-import addTask, { createTask } from './task-operations/add-task.js';
-import deleteCheckedTasks from './task-operations/delete-checked-tasks.js';
+import listsTemplate from './templates/pages/lists/index.js';
 
-// находим форму добавления
-const addForm = document.querySelector('.add-form > form');
-const deleteCheckedBtn = document.querySelector('.delete-checked-btn');
+const currentUrl = window.location.pathname;
 
-// вешаем обработчик события submit (отправки) на форму
-addForm.addEventListener('submit', addTask);
-deleteCheckedBtn.addEventListener('click', deleteCheckedTasks);
+const rootDiv = document.querySelector('.container');
 
-taskList.tasks.forEach((task) => {
-  createTask(task);
-});
+if (currentUrl === '/') {
+  rootDiv.innerHTML = listsTemplate;
+
+  const addListForm = document.querySelector('.add-form > form');
+
+  addListForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+
+    const listName = formData.get('name');
+
+    const newList = {
+      id: generateId(listsList.lists),
+      name: listName,
+    };
+
+    listsList.add(newList);
+  });
+}
