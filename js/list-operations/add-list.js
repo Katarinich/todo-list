@@ -2,6 +2,7 @@ import storageService from '../storage-service.js';
 
 import { generateId } from '../utils.js';
 import listsList from '../lists-list.js';
+import { renderList } from '../script.js';
 
 export function createList(list) {
   const lists = document.querySelector('.lists ol');
@@ -12,7 +13,21 @@ export function createList(list) {
 
   lists.appendChild(newList);
 
-  newList.innerHTML = `<span>${list.name}</span>`;
+  newList.innerHTML = `<a href="#">${list.name}</a>`;
+
+  const linkToList = newList.querySelector('a');
+
+  linkToList.addEventListener('click', (event) => {
+    event.preventDefault();
+
+    window.history.pushState(
+      {},
+      `/list/${list.id}`,
+      window.location.origin + `/list/${list.id}`
+    );
+
+    renderList();
+  });
 }
 
 export default function addList(event) {

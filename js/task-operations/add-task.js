@@ -6,9 +6,9 @@ import taskList from '../tasks.js';
 import { generateId } from '../utils.js';
 import storageService from '../storage-service.js';
 
-const todoList = document.querySelector('.todo-list ol');
-
 export function createTask(task) {
+  const todoList = document.querySelector('.todo-list ol');
+
   const newTodo = document.createElement('li');
 
   newTodo.setAttribute('id', `task-${task.id}`);
