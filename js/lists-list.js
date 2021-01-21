@@ -10,7 +10,7 @@ class ListsList {
   }
 }
 
-const lists = storageService.get('lists');
+const lists = JSON.parse(storageService.get('lists'));
 
 const listsList = new ListsList(lists || []);
 

@@ -6,19 +6,9 @@ const template = `
     </form>
   </div>
 
-  <ol>
-    <li>
-      <a>List #1</a>
-    </li>
-
-    <li>
-      <a>List #2</a>
-    </li>
-
-    <li>
-      <a>List #3</a>
-    </li>
-  </ol>
+  <div class="lists">
+    <ol></ol>
+  </div>
 `;
 
 export default template;

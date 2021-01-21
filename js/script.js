@@ -1,7 +1,7 @@
-import { generateId } from './utils.js';
 import listsList from './lists-list.js';
 
 import listsTemplate from './templates/pages/lists/index.js';
+import addList, { createList } from './list-operations/add-list.js';
 
 const currentUrl = window.location.pathname;
 
@@ -12,18 +12,9 @@ if (currentUrl === '/') {
 
   const addListForm = document.querySelector('.add-form > form');
 
-  addListForm.addEventListener('submit', (event) => {
-    event.preventDefault();
+  addListForm.addEventListener('submit', addList);
 
-    const formData = new FormData(event.target);
-
-    const listName = formData.get('name');
-
-    const newList = {
-      id: generateId(listsList.lists),
-      name: listName,
-    };
-
-    listsList.add(newList);
+  listsList.lists.forEach((list) => {
+    createList(list);
   });
 }
