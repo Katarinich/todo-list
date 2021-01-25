@@ -32,6 +32,10 @@ class TaskList {
       return task;
     });
   }
+
+  deleteTasksByListId(listId) {
+    this.tasks = this.tasks.filter((task) => task.parentListId !== listId);
+  }
 }
 
 const tasks = JSON.parse(storageService.get('tasks'));

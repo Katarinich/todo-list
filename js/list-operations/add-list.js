@@ -1,8 +1,10 @@
-import storageService from '../storage-service.js';
+import deleteList from './delete-list.js';
 
 import { generateId } from '../utils.js';
 import listsList from '../lists-list.js';
-import { renderList } from '../script.js';
+import storageService from '../storage-service.js';
+
+import renderList from '../render/render-list.js';
 
 export function createList(list) {
   const lists = document.querySelector('.lists ol');
@@ -13,7 +15,14 @@ export function createList(list) {
 
   lists.appendChild(newList);
 
-  newList.innerHTML = `<a href="#">${list.name}</a>`;
+  newList.innerHTML = `
+    <a href="#">${list.name}</a>
+    <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>
+  `;
+
+  const deleteBtn = document.querySelector(`#list-${list.id} .delete-btn`);
+
+  deleteBtn.addEventListener('click', deleteList);
 
   const linkToList = newList.querySelector('a');
 

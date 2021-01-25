@@ -38,22 +38,22 @@ body {
     color: white;
     border-radius: 5px; }
 
-.todo-list {
+.todo-list, .lists {
   flex-grow: 1;
   overflow-y: auto;
   margin-bottom: 20px; }
-  .todo-list ol {
+  .todo-list ol, .lists ol {
     list-style-type: none;
     margin: 0;
     padding: 0; }
-    .todo-list ol li {
+    .todo-list ol li, .lists ol li {
       display: flex; }
-      .todo-list ol li span, .todo-list ol li input[type="text"] {
+      .todo-list ol li span, .todo-list ol li input[type="text"], .todo-list ol li a, .lists ol li span, .lists ol li input[type="text"], .lists ol li a {
         flex-grow: 1; }
-      .todo-list ol li .delete-btn, .todo-list ol li .edit-btn {
+      .todo-list ol li .delete-btn, .todo-list ol li .edit-btn, .lists ol li .delete-btn, .lists ol li .edit-btn {
         border: none;
         background: none; }
-      .todo-list ol li.checked span {
+      .todo-list ol li.checked span, .lists ol li.checked span {
         text-decoration: line-through; }
 
 .delete-checked-wrapper {

@@ -3,7 +3,7 @@ import checkTask from './check-task.js';
 import deleteTask from './delete-task.js';
 
 import taskList from '../tasks.js';
-import { generateId } from '../utils.js';
+import { generateId, getListIdByUrl } from '../utils.js';
 import storageService from '../storage-service.js';
 
 export function createTask(task) {
@@ -36,6 +36,8 @@ export function createTask(task) {
   }
 }
 
+
+
 export default function addTask(event) {
   // сброс стандартого поведения отправки формы
   event.preventDefault();
@@ -52,6 +54,7 @@ export default function addTask(event) {
 
   const newTask = {
     id: generateId(taskList.tasks),
+    parentListId: getListIdByUrl(),
     text: todoText,
     checked: false,
   };

@@ -57,7 +57,7 @@ body {
   }
 }
 
-.todo-list {
+.todo-list, .lists {
   flex-grow: 1;
   overflow-y: auto;
   margin-bottom: 20px;
@@ -70,7 +70,7 @@ body {
     li {
       display: flex;
 
-      span, input[type="text"] {
+      span, input[type="text"], a {
         flex-grow: 1;
       }
 

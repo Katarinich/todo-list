@@ -1,17 +1,20 @@
 import taskList from '../tasks.js';
 import { getId } from '../utils.js';
+import listsList from '../lists-list.js';
 import storageService from '../storage-service.js';
 
-function deleteTask(event) {
+function deleteList(event) {
   const { parentNode } = event.target.closest('.delete-btn');
 
-  const taskId = getId(parentNode);
+  const listId = getId(parentNode);
 
-  taskList.delete(taskId);
+  taskList.deleteTasksByListId(listId);
+  listsList.delete(listId);
 
   parentNode.remove();
 
   storageService.set('tasks', JSON.stringify(taskList.tasks));
+  storageService.set('lists', JSON.stringify(listsList.lists));
 }
 
-export default deleteTask;
+export default deleteList;
