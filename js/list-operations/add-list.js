@@ -2,9 +2,8 @@ import deleteList from './delete-list.js';
 
 import { generateId } from '../utils.js';
 import listsList from '../lists-list.js';
+import { navigateToUrl } from '../routing.js';
 import storageService from '../storage-service.js';
-
-import renderList from '../render/render-list.js';
 
 export function createList(list) {
   const lists = document.querySelector('.lists ol');
@@ -29,13 +28,7 @@ export function createList(list) {
   linkToList.addEventListener('click', (event) => {
     event.preventDefault();
 
-    window.history.pushState(
-      {},
-      `/list/${list.id}`,
-      window.location.origin + `/list/${list.id}`
-    );
-
-    renderList();
+    navigateToUrl(`/list/${list.id}`);
   });
 }
 
