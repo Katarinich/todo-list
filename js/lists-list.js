@@ -12,6 +12,10 @@ class ListsList {
   delete(id) {
     this.lists = this.lists.filter(list => list.id !== id);
   }
+
+  getListById(id) {
+    return this.lists.find(list => list.id === id);
+  }
 }
 
 const lists = JSON.parse(storageService.get('lists'));
