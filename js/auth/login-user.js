@@ -3,6 +3,31 @@ import userList from '../users.js';
 import { navigateToUrl } from '../routing.js';
 import currentUser from '../current-user.js';
 import storageService from '../storage-service.js';
+import { checkIfHasErrors, showErrors } from '../utils.js';
+
+function validateLogin({ email, password }) {
+  let errors = {
+    email: [],
+    password: [],
+  };
+
+  const user = userList.getUserByEmail(email);
+
+  if (!user) {
+    errors = { ...errors, email: [...errors.email, 'User dows not exits'] };
+  }
+
+  const hashedPassword = CryptoJS.SHA3(password).toString();
+
+  if (user && user.password !== hashedPassword) {
+    errors = {
+      ...errors,
+      password: [...errors.password, 'Password does not match'],
+    };
+  }
+
+  return errors;
+}
 
 export default function loginUser(event) {
   event.preventDefault();
@@ -12,19 +37,13 @@ export default function loginUser(event) {
   const email = formData.get('email');
   const password = formData.get('password');
 
-  const user = userList.getUserByEmail(email);
+  const errors = validateLogin({ email, password });
 
-  if (!user) {
-    alert('User does not exist.');
+  showErrors(errors);
 
-    return;
-  }
+  const hasErrors = checkIfHasErrors(errors);
 
-  const hashedPassword = CryptoJS.SHA3(password).toString();
-
-  if (user.password !== hashedPassword) {
-    alert('Password does not match.');
-
+  if (hasErrors) {
     return;
   }
 

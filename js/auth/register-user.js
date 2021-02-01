@@ -1,5 +1,5 @@
 import userList from '../users.js';
-import { generateId } from '../utils.js';
+import { checkIfHasErrors, generateId, showErrors } from '../utils.js';
 import { navigateToUrl } from '../routing.js';
 import storageService from '../storage-service.js';
 import currentUser from '../current-user.js';
@@ -68,21 +68,9 @@ export default function registerUser(event) {
 
   const errors = validateRegistration({ email, password, repeatPassword });
 
-  let hasErrors = false;
+  showErrors(errors);
 
-  for (let key in errors) {
-    const span = document.querySelector(`input[name="${key}"] + span`);
-
-    if (errors[key].length > 0) {
-      hasErrors = true;
-
-      const errorStr = errors[key].join('<br>');
-
-      span.innerHTML = errorStr;
-    } else {
-      span.innerHTML = '';
-    }
-  }
+  const hasErrors = checkIfHasErrors(errors);
 
   if (hasErrors) {
     return;
