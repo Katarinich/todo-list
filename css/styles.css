@@ -60,4 +60,7 @@ body {
   display: flex;
   justify-content: flex-end; }
 
+.error {
+  color: red; }
+
 /*# sourceMappingURL=styles.css.map */

@@ -1,4 +1,5 @@
 import listsList from '../lists-list.js';
+import currentUser from '../current-user.js';
 
 import addList, { createList } from '../list-operations/add-list.js';
 
@@ -13,7 +14,11 @@ export default function renderLists() {
 
   addListForm.addEventListener('submit', addList);
 
-  listsList.lists.forEach((list) => {
-    createList(list);
-  });
+  const currentUserId = currentUser.userData.id;
+
+  listsList.lists
+    .filter((list) => list.userId === currentUserId)
+    .forEach((list) => {
+      createList(list);
+    });
 }
